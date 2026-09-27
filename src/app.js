@@ -1,4 +1,4 @@
-import { answerQuestion, createGame, isComplete, nextQuestion, shuffle } from "./game.js";
+import { answerQuestion, createGame, getRank, isComplete, nextQuestion, shuffle } from "./game.js";
 import { questions } from "./questions.js";
 
 const elements = Object.fromEntries(
@@ -86,7 +86,8 @@ function advance() {
   if (isComplete(state)) {
     elements.challenge.hidden = true;
     elements.results.hidden = false;
-    elements["results-copy"].textContent = `You diagnosed ${state.correct} of ${state.questions.length} incidents and scored ${state.score} points.`;
+    const rank = getRank(state.correct, state.questions.length);
+    elements["results-copy"].textContent = `${rank} — you diagnosed ${state.correct} of ${state.questions.length} incidents and scored ${state.score} points.`;
     elements.restart.focus();
     return;
   }
