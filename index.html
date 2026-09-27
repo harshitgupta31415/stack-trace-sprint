@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Practise debugging real stack traces in short, focused rounds.">
+    <meta name="theme-color" content="#0b0d10">
+    <title>Stack Trace Sprint</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#game">Skip to the challenge</a>
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="Stack Trace Sprint home">
+        <span class="brand-mark" aria-hidden="true">&gt;_</span>
+        <span>Stack Trace Sprint</span>
+      </a>
+      <button class="icon-button" id="theme-toggle" type="button" aria-label="Switch colour theme">☀</button>
+    </header>
+
+    <main id="game" class="shell">
+      <section class="intro" aria-labelledby="title">
+        <p class="eyebrow">Debugging practice · 8 incidents</p>
+        <h1 id="title">Find the root cause before the timer wins.</h1>
+        <p>
+          Read a realistic failure, choose the most likely diagnosis, and learn
+          which signal matters. No setup, account, or framework required.
+        </p>
+      </section>
+
+      <section class="dashboard" aria-label="Game status">
+        <div><span>Incident</span><strong id="progress">1 / 8</strong></div>
+        <div><span>Score</span><strong id="score">0</strong></div>
+        <div><span>Streak</span><strong id="streak">0</strong></div>
+        <div><span>Best</span><strong id="best">0</strong></div>
+      </section>
+
+      <article class="challenge" id="challenge">
+        <div class="challenge-header">
+          <div>
+            <span class="language" id="language">JavaScript</span>
+            <h2 id="scenario-title">Loading incident…</h2>
+          </div>
+          <span class="difficulty" id="difficulty">Medium</span>
+        </div>
+
+        <p class="context" id="context"></p>
+        <pre class="trace" tabindex="0" aria-label="Stack trace"><code id="trace"></code></pre>
+
+        <fieldset class="answers" id="answers">
+          <legend>What is the most likely root cause?</legend>
+        </fieldset>
+
+        <div class="feedback" id="feedback" aria-live="polite" hidden>
+          <strong id="feedback-title"></strong>
+          <p id="explanation"></p>
+          <p class="signal"><span>Signal to notice</span><span id="signal"></span></p>
+        </div>
+
+        <div class="actions">
+          <button class="primary-button" id="next" type="button" disabled>Next incident</button>
+          <span class="shortcut">Use keys <kbd>1</kbd>–<kbd>4</kbd>, then <kbd>Enter</kbd></span>
+        </div>
+      </article>
+
+      <section class="results" id="results" hidden aria-labelledby="results-title">
+        <p class="eyebrow">Sprint complete</p>
+        <h2 id="results-title">You traced the failures.</h2>
+        <p id="results-copy"></p>
+        <button class="primary-button" id="restart" type="button">Run another sprint</button>
+      </section>
+    </main>
+
+    <footer>
+      Built for developers who want sharper debugging instincts. All progress stays in this browser.
+    </footer>
+
+    <script type="module" src="src/app.js"></script>
+  </body>
+</html>
