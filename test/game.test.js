@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { answerQuestion, createGame, isComplete, nextQuestion, shuffle } from "../src/game.js";
+import { answerQuestion, createGame, getRank, isComplete, nextQuestion, shuffle } from "../src/game.js";
 
 const sample = [
   { difficulty: "Easy", answers: ["a", "b"], correct: 1 },
@@ -40,4 +40,16 @@ test("shuffle is deterministic with an injected random source", () => {
   let index = 0;
   const result = shuffle([1, 2, 3, 4], () => values[index++]);
   assert.deepEqual(result, [2, 4, 3, 1]);
+});
+
+test("assigns a result rank from diagnostic accuracy", () => {
+  assert.equal(getRank(8, 8), "Incident Commander");
+  assert.equal(getRank(6, 8), "Production Debugger");
+  assert.equal(getRank(4, 8), "Signal Hunter");
+  assert.equal(getRank(2, 8), "Log Explorer");
+});
+
+test("rejects impossible result totals", () => {
+  assert.throws(() => getRank(9, 8), RangeError);
+  assert.throws(() => getRank(0, 0), RangeError);
 });

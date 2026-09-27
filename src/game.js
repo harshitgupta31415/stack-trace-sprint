@@ -37,6 +37,17 @@ export function isComplete(state) {
   return state.answered && state.index === state.questions.length - 1;
 }
 
+export function getRank(correct, total) {
+  if (!Number.isInteger(correct) || !Number.isInteger(total) || total < 1 || correct < 0 || correct > total) {
+    throw new RangeError("correct and total must describe a valid completed run");
+  }
+  const ratio = correct / total;
+  if (ratio === 1) return "Incident Commander";
+  if (ratio >= 0.75) return "Production Debugger";
+  if (ratio >= 0.5) return "Signal Hunter";
+  return "Log Explorer";
+}
+
 export function shuffle(items, random = Math.random) {
   const copy = [...items];
   for (let index = copy.length - 1; index > 0; index -= 1) {

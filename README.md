@@ -10,6 +10,7 @@ root cause and highlights the most useful signal in the trace.
 
 - Realistic traces and failure contexts instead of syntax trivia
 - Difficulty and streak-based scoring
+- Accuracy-based result ranks from Log Explorer to Incident Commander
 - Keyboard controls (`1`–`4`, then `Enter`)
 - Persistent best score and theme preference using local storage
 - Responsive light and dark themes
